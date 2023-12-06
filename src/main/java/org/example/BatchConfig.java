@@ -19,7 +19,7 @@ public class BatchConfig {
     }
 
     @Bean
-    public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) throws Exception {
+    public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         var step = new StepBuilder("fooStep", jobRepository).tasklet(fooTasklet, transactionManager).build();
         return new JobBuilder("fooJob", jobRepository).start(step).build();
     }
